@@ -85,7 +85,7 @@ sudo systemctl status jenkins
 
 ## Unlock jenkins 
  open browser and paste the link : http://localhost:8080 please  provide your PUBLIC_IP in place of localhost.
-if your a first accessjenkins controller you will output like this :
+if your a first access jenkins controller you will output like this :
 ![Screenshot from 2025-06-20 17-40-16](https://github.com/user-attachments/assets/9c4e6169-07c2-4e8d-92d9-786b9040949f)
 
  
