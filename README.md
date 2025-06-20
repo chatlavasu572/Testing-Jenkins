@@ -117,6 +117,62 @@ click on save and finish
  Now you pass the values like API_KEY,USER,Local_Host etc.. in the Environmental variables in the monitor pythonScript.
  click on save and check how the monitor is working whether it is working or giving any failed issues.
 
+ ```
+#!/usr/bin/env python3
+"""
+Jenkins Connectivity Check
+
+This script checks if Jenkins is accessible via its REST API.
+
+Environment Variables:
+    JENKINS_URL - Jenkins base URL (default: http://localhost:8080)
+    JENKINS_USER - Jenkins username (if required)
+    JENKINS_API_TOKEN - API token for authentication (if required)
+
+Exit Codes:
+    0 - Success (Jenkins is reachable)
+    1 - Failure (Jenkins is unreachable)
+"""
+
+import logging
+import os
+import sys
+
+import requests
+from requests.auth import HTTPBasicAuth
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
+# Environment variables
+JENKINS_URL = os.getenv("JENKINS_URL", "http://13.204.87.116:8080/")
+JENKINS_USER = os.getenv("JENKINS_USER","vasu")
+JENKINS_API_TOKEN = os.getenv("JENKINS_API_TOKEN","1188868b6b04fc85b3c")
+def check_connectivity():
+    """Check if Jenkins is accessible via API."""
+    try:
+        auth = (
+            HTTPBasicAuth(JENKINS_USER, JENKINS_API_TOKEN)
+            if JENKINS_USER and JENKINS_API_TOKEN
+            else None
+        )
+        response = requests.get(f"{JENKINS_URL}/api/json", auth=auth, timeout=5)
+        response.raise_for_status()
+        logging.info("Jenkins is reachable.")
+        return True
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Failed to connect to Jenkins: {e}")
+        return False
+
+
+if __name__ == "__main__":
+    sys.exit(0 if check_connectivity() else 1)
+
+ ```
+
+
  ## If the monitor runs successful you will see the output as like this ...
 
  ![Screenshot from 2025-06-08 12-33-42](https://github.com/user-attachments/assets/738227a1-c150-4d68-85d3-6fe784b7b4ca)
