@@ -66,16 +66,25 @@ Choose 'Install suggested plugins', then create admin user
 ![Screenshot from 2025-06-20 17-41-40](https://github.com/user-attachments/assets/eb142955-8023-4bd0-a2e3-40d91ef75787)
 
 create new user and password after installing suggested plugins
+click on save and finish
 
 ![Screenshot from 2025-06-20 17-44-39](https://github.com/user-attachments/assets/a3323b09-3f39-4324-be80-cf469dc5ba17)
 
-click on save and finish
+## start using jenkins
 
 ![Screenshot from 2025-06-20 17-44-48](https://github.com/user-attachments/assets/08c49901-2ac0-4bf0-b5a5-8e0f8b1faa83)
 
-## start using jenkins
+## welcome to the dashboard 
 ![Screenshot from 2025-06-20 17-45-24](https://github.com/user-attachments/assets/4e568762-4413-49b5-8855-9c5ea34222b6)
 
  Now u can do your work in jenkins like create a job, creating nodes and building jobs .
+
+ Now you pass the values like API_KEY,USER,Local_Host etc.. in the Environmental variables in the monitor pythonScript.
+ click on save and check how the monitor is working whether it is working or giving any failed issues.
+
+ ## if the monitor runs successful you will see the output as like this ...
+
+ ![Screenshot from 2025-06-08 12-33-42](https://github.com/user-attachments/assets/738227a1-c150-4d68-85d3-6fe784b7b4ca)
+
 
 
