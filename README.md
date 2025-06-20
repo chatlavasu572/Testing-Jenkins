@@ -120,7 +120,7 @@ click on save and finish
  Now you pass the values like API_KEY,USER,Local_Host etc.. in the Environmental variables in the monitor pythonScript.
  click on save and check how the monitor is working whether it is working or giving any failed issues.
 
- ```
+```
 #!/usr/bin/env python3
 """
 Jenkins Connectivity Check
