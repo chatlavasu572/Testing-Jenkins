@@ -18,7 +18,7 @@ Instance name with Dummy-Jenkins-Server
 with type "t2.micro" and with key pair named "jenkinsKeyPair" 
 ![Screenshot from 2025-06-20 18-15-57](https://github.com/user-attachments/assets/cde3058e-b4bf-4296-9164-cda1b7e94008)
 
-with 8GB of Volume
+with 8GB of Configure-Volume
 ![Screenshot from 2025-06-20 18-16-39](https://github.com/user-attachments/assets/3e38f2eb-b5c7-4d06-af24-8870059eaa19)
 
 then click on launch instance
@@ -38,7 +38,7 @@ copy that code
 Getting error because of no permission for our public_key.. need to pass the command for providing permissions to the public key .
  ```
 chmod 400 "jenkinskeypair.pem"
-'''
+```
 
 ![Screenshot from 2025-06-20 18-20-24](https://github.com/user-attachments/assets/2faa3675-96e6-4169-96df-44b759484fa4)
 
