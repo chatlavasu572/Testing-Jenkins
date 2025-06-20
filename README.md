@@ -10,6 +10,38 @@ integration, testing, and deployment. It helps detect bugs early, speed up deliv
 consistent builds.
 
 # Installation Process :
+
+## create an instance in the aws console.
+Instance name with Dummy-Jenkins-Server 
+![Screenshot from 2025-06-20 18-15-35](https://github.com/user-attachments/assets/e88a1a7c-af6b-4e4a-a6f1-5f3fa37db800)
+
+with type "t2.micro" and with key pair named "jenkinsKeyPair" 
+![Screenshot from 2025-06-20 18-15-57](https://github.com/user-attachments/assets/cde3058e-b4bf-4296-9164-cda1b7e94008)
+
+with 8GB of Volume
+![Screenshot from 2025-06-20 18-16-39](https://github.com/user-attachments/assets/3e38f2eb-b5c7-4d06-af24-8870059eaa19)
+
+then click on launch instance
+
+## you will see the instances which is running like this
+![Screenshot from 2025-06-20 18-20-11](https://github.com/user-attachments/assets/7969c7ce-7386-4366-bd8e-95377c46464f)
+
+## connect ec2-instance in the local machine using SSH-client 
+copy that code 
+``` 
+"ssh -i "jenkinskeypair.pem" ubuntu@ec2-13-204-87-116.ap-south-1.compute.amazonaws.com"
+````
+![Screenshot from 2025-06-20 18-24-35](https://github.com/user-attachments/assets/59eae808-400f-46aa-93c8-1131374ac1e3)
+Getting error because of no permission for our public_key.. need to pass the command for providing permissions to the public key .
+ ```
+chmod 400 "jenkinskeypair.pem"
+'''
+
+![Screenshot from 2025-06-20 18-20-24](https://github.com/user-attachments/assets/2faa3675-96e6-4169-96df-44b759484fa4)
+
+## Terminal from local machine 
+
+
 ## first we need  java so install java.
 ```
 sudo apt update
@@ -82,7 +114,7 @@ click on save and finish
  Now you pass the values like API_KEY,USER,Local_Host etc.. in the Environmental variables in the monitor pythonScript.
  click on save and check how the monitor is working whether it is working or giving any failed issues.
 
- ## if the monitor runs successful you will see the output as like this ...
+ ## If the monitor runs successful you will see the output as like this ...
 
  ![Screenshot from 2025-06-08 12-33-42](https://github.com/user-attachments/assets/738227a1-c150-4d68-85d3-6fe784b7b4ca)
 
