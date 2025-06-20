@@ -45,6 +45,8 @@ sudo systemctl start jenkins
 sudo systemctl status jenkins
 ```
 ## Allow port 8080 in security groups from ec2-instance 
+![Screenshot from 2025-06-20 17-28-03](https://github.com/user-attachments/assets/baf69fb2-bd7b-436f-9606-8c326e8dbf02)
+
 
 ## Unlock jenkins 
  open browser and paste the link : http://localhost:8080 please  provide your PUBLIC_IP in place of localhost.
@@ -58,5 +60,18 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 copy the password and paste it your Administrator Password.then click on continue....
 
+## Install Suggested Plugins
+Choose 'Install suggested plugins', then create admin user 
+![Screenshot from 2025-06-20 17-41-40](https://github.com/user-attachments/assets/eb142955-8023-4bd0-a2e3-40d91ef75787)
 
- 
+create new user and password after installing suggested plugins
+
+![Screenshot from 2025-06-20 17-44-39](https://github.com/user-attachments/assets/a3323b09-3f39-4324-be80-cf469dc5ba17)
+![Screenshot from 2025-06-20 17-44-48](https://github.com/user-attachments/assets/08c49901-2ac0-4bf0-b5a5-8e0f8b1faa83)
+
+## start using jenkins
+![Screenshot from 2025-06-20 17-45-24](https://github.com/user-attachments/assets/4e568762-4413-49b5-8855-9c5ea34222b6)
+
+ Now u can do your work in jenkins like create a job, creating nodes and building jobs .
+
+
