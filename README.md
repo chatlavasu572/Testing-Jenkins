@@ -68,6 +68,9 @@ Choose 'Install suggested plugins', then create admin user
 create new user and password after installing suggested plugins
 
 ![Screenshot from 2025-06-20 17-44-39](https://github.com/user-attachments/assets/a3323b09-3f39-4324-be80-cf469dc5ba17)
+
+click on save and finish
+
 ![Screenshot from 2025-06-20 17-44-48](https://github.com/user-attachments/assets/08c49901-2ac0-4bf0-b5a5-8e0f8b1faa83)
 
 ## start using jenkins
