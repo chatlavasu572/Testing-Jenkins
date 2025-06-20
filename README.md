@@ -28,6 +28,9 @@ then click on launch instance
 
 ## connect ec2-instance in the local machine using SSH-client 
 copy that code 
+![Screenshot from 2025-06-20 18-20-24](https://github.com/user-attachments/assets/b708fa64-ad27-44dc-9747-9ce8ac4058df)
+
+
 ``` 
 "ssh -i "jenkinskeypair.pem" ubuntu@ec2-13-204-87-116.ap-south-1.compute.amazonaws.com"
 ````
