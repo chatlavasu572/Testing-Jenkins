@@ -132,6 +132,9 @@ click on save and finish
 
  Now you pass the values like API_KEY,USER,Local_Host etc.. in the Environmental variables in the monitor pythonScript.
  click on save and check how the monitor is working whether it is working or giving any failed issues.
+ ## The Four monitors are :
+ ### 1. connectivity check:
+ This is used to check the endpoints are reachable to the jenkins.
 
 ```
 #!/usr/bin/env python3
@@ -187,6 +190,229 @@ if __name__ == "__main__":
     sys.exit(0 if check_connectivity() else 1)
 
  ```
+![Screenshot from 2025-06-23 13-58-25](https://github.com/user-attachments/assets/6f8c4f44-c6a8-4088-9eba-1a21e93b86bc)
+
+### 2. Failed job check :
+```
+"""
+Jenkins Failed Jobs Monitor
+
+This script checks for failed Jenkins jobs in the last N builds.
+
+Environment Variables:
+    JENKINS_URL - Jenkins base URL (default: http://localhost:8080)
+    JENKINS_USER - Jenkins username (if required)
+    JENKINS_API_TOKEN - API token for authentication (if required)
+    MAX_FAILED_JOBS - Maximum acceptable failed jobs in recent builds (default: 3)
+
+Exit Codes:
+    0 - Success (Failed jobs within limits)
+    1 - Failure (Too many failed jobs detected)
+"""
+
+import logging
+import os
+import sys
+
+import requests
+from requests.auth import HTTPBasicAuth
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
+
+# Environment variables
+JENKINS_URL = os.getenv("JENKINS_URL", "http://3.108.220.114:8080")
+JENKINS_USER = os.getenv("JENKINS_USER","admin")
+JENKINS_API_TOKEN = os.getenv("JENKINS_API_TOKEN","11b499e45f5be51f661a783afd0c8ec917")
+MAX_FAILED_JOBS = int(os.getenv("MAX_FAILED_JOBS", 3))
+
+
+def check_failed_jobs():
+    """Check for failed Jenkins jobs in recent builds."""
+    try:
+        auth = (
+            HTTPBasicAuth(JENKINS_USER, JENKINS_API_TOKEN)
+            if JENKINS_USER and JENKINS_API_TOKEN
+            else None
+        )
+        response = requests.get(
+            f"{JENKINS_URL}/api/json?tree=jobs[name,lastBuild[result]]",
+            auth=auth,
+            timeout=5,
+        )
+        response.raise_for_status()
+        jobs = response.json().get("jobs", [])
+
+        failed_jobs = [
+            job["name"]
+            for job in jobs
+            if job.get("lastBuild", {}).get("result") == "FAILURE"
+        ]
+        failed_count = len(failed_jobs)
+
+        logging.info(f"Number of failed jobs: {failed_count}")
+        if failed_count > MAX_FAILED_JOBS:
+            logging.warning(
+                f"Failed jobs exceeded limit: {failed_count} > {MAX_FAILED_JOBS}"
+            )
+            return False
+
+        return True
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Failed to fetch Jenkins jobs: {e}")
+        return False
+
+
+if __name__ == "__main__":
+    sys.exit(0 if check_failed_jobs() else 1)
+```
+
+![Screenshot from 2025-06-23 13-58-46](https://github.com/user-attachments/assets/62790750-a48e-4812-93a6-f5fc2f9ae4cb)
+
+### 3.Job Queue Check:
+```
+#!/usr/bin/env python3
+"""
+Jenkins Job Queue Check
+
+This script checks the number of pending jobs in Jenkins queue.
+
+Environment Variables:
+    JENKINS_URL - Jenkins base URL (default: http://localhost:8080)
+    JENKINS_USER - Jenkins username (if required)
+    JENKINS_API_TOKEN - API token for authentication (if required)
+    MAX_QUEUE_SIZE - Maximum acceptable pending jobs (default: 5)
+
+Exit Codes:
+    0 - Success (Queue size within limits)
+    1 - Failure (Queue size exceeded)
+"""
+
+import logging
+import os
+import sys
+
+import requests
+from requests.auth import HTTPBasicAuth
+
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
+# Environment variables
+JENKINS_URL = os.getenv("JENKINS_URL", "http://3.108.220.114:8080")
+JENKINS_USER = os.getenv("JENKINS_USER","admin")
+JENKINS_API_TOKEN = os.getenv("JENKINS_API_TOKEN","11b499e45f5be51f661a783afd0c8ec917")
+
+
+MAX_QUEUE_SIZE = int(os.getenv("MAX_QUEUE_SIZE", 5))
+
+
+def check_job_queue():
+    """Check the number of jobs in Jenkins queue."""
+    try:
+        auth = (
+            HTTPBasicAuth(JENKINS_USER, JENKINS_API_TOKEN)
+            if JENKINS_USER and JENKINS_API_TOKEN
+            else None
+        )
+        response = requests.get(f"{JENKINS_URL}/queue/api/json", auth=auth, timeout=5)
+        response.raise_for_status()
+        queue = response.json()
+
+        queue_size = len(queue.get("items", []))
+        logging.info(f"Jenkins job queue size: {queue_size}")
+
+        if queue_size > MAX_QUEUE_SIZE:
+            logging.warning(
+                f"Job queue exceeded threshold: {queue_size} > {MAX_QUEUE_SIZE}"
+            )
+            return False
+
+        return True
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Failed to fetch Jenkins job queue: {e}")
+        return False
+
+
+if __name__ == "__main__":
+    sys.exit(0 if check_job_queue() else 1)
+```
+
+![Screenshot from 2025-06-23 13-58-38](https://github.com/user-attachments/assets/c17e05c5-91d2-4312-adf2-7ccadb9c549c)
+
+### 4.Node Health Check :
+
+```
+"""
+Jenkins Node Health Monitor
+
+This script checks if any Jenkins nodes are offline or failing.
+
+Environment Variables:
+    JENKINS_URL - Jenkins base URL (default: http://localhost:8080)
+    JENKINS_USER - Jenkins username (if required)
+    JENKINS_API_TOKEN - API token for authentication (if required)
+
+Exit Codes:
+    0 - Success (All nodes healthy)
+    1 - Failure (Some nodes are offline)
+"""
+
+import logging
+import os
+import sys
+
+import requests
+
+from requests.auth import HTTPBasicAuth
+
+
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
+# Environment variables
+JENKINS_URL = os.getenv("JENKINS_URL", "http://3.108.220.114:8080")
+JENKINS_USER = os.getenv("JENKINS_USER","admin")
+JENKINS_API_TOKEN = os.getenv("JENKINS_API_TOKEN","11b499e45f5be51f661a783afd0c8ec917")
+
+
+def check_node_health():
+    """Check the health of Jenkins nodes."""
+    try:
+        auth = (
+            HTTPBasicAuth(JENKINS_USER, JENKINS_API_TOKEN)
+            if JENKINS_USER and JENKINS_API_TOKEN
+            else None
+        )
+        response = requests.get(
+            f"{JENKINS_URL}/computer/api/json", auth=auth, timeout=5
+        )
+        response.raise_for_status()
+        nodes = response.json().get("computer", [])
+
+        offline_nodes = [node["displayName"] for node in nodes if node.get("offline")]
+        if offline_nodes:
+            logging.warning(f"Offline Jenkins nodes detected: {offline_nodes}")
+            return False
+
+        logging.info("All Jenkins nodes are online and healthy.")
+        return True
+    except requests.exceptions.RequestException as e:
+        logging.error(f"Failed to fetch Jenkins node health: {e}")
+        return False
+
+
+if __name__ == "__main__":
+    sys.exit(0 if check_node_health() else 1)
+```
+![Screenshot from 2025-06-23 13-59-00](https://github.com/user-attachments/assets/5bd809a2-14d3-472a-bb13-e4da03c5e822)
 
 
  ## If the monitor runs successful you will see the output as like this ...
