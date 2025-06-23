@@ -9,7 +9,7 @@ code
 integration, testing, and deployment. It helps detect bugs early, speed up delivery, and ensures
 consistent builds.
 
-# Installation Process :
+## Installation Process :
 
 ## create an instance in the aws console.
 Instance name with Dummy-Jenkins-Server 
@@ -62,7 +62,7 @@ OpenJDK Runtime Environment (build 21.0.3+11-Debian-2)
 OpenJDK 64-Bit Server VM (build 21.0.3+11-Debian-2, mixed mode, sharing)
 
 ```
-# installation of jenkins :
+## installation of jenkins :
 ```
 sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
   https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
@@ -194,6 +194,10 @@ if __name__ == "__main__":
 
  ## If any monitor failed you can see the red dot blink in the application monitor itself.
  ![Screenshot from 2025-06-20 19-39-35](https://github.com/user-attachments/assets/db44204d-4ffa-416b-9cf5-48fa6d97c5c1)
+
+ ## Conclusion:
+All four monitors are working successfully, indicating that the system's health checks are functioning as expected. Each monitor is actively running, returning valid results, and confirming that all critical components of the application are stable, responsive, and under proper observation. Monitoring is healthy and no issues were detected.
+ 
 
 
 
