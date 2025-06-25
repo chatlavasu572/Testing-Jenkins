@@ -424,6 +424,26 @@ if __name__ == "__main__":
 
  ## Conclusion:
 All four monitors are working successfully, indicating that the system's health checks are functioning as expected. Each monitor is actively running, returning valid results, and confirming that all critical components of the application are stable, responsive, and under proper observation. Monitoring is healthy and no issues were detected.
+
+
+ ## Test cases which i have obeseverd when i passed wrong api,user,and local_host.
+
+ 1. when jenkins nodes are offline it is showing this error.
+
+ ![Screenshot from 2025-06-24 11-38-13](https://github.com/user-attachments/assets/c72236e8-e14d-4c73-b498-8549e076aac6)
+ 
+ 2.when i didn't passed url in jenkins monitor.
+
+ ![Screenshot from 2025-06-24 12-02-06](https://github.com/user-attachments/assets/969e6bc4-d53a-416b-92b3-64bb1b6e25d9)
+
+ 3. when i passed the wrong api and username .
+
+ ![Screenshot from 2025-06-24 12-16-30](https://github.com/user-attachments/assets/4ef257b6-10e8-465e-9a26-c596085158af)
+
+ 
+
+
+
  
 
 
