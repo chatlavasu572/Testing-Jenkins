@@ -105,14 +105,20 @@ if your a first access jenkins controller you will output like this :
 ```
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
+![image](https://github.com/user-attachments/assets/16f49472-b552-449c-a9e0-41a1048d35d3)
+
 copy the password and paste it your Administrator Password.then click on continue....
 
 ## Install Suggested Plugins
 Choose 'Install suggested plugins', then create admin user 
 
+![image](https://github.com/user-attachments/assets/880221fe-51bb-4c46-b1db-a922fb4d2825)
+
 ![Screenshot from 2025-06-20 17-41-40](https://github.com/user-attachments/assets/eb142955-8023-4bd0-a2e3-40d91ef75787)
 
 create new user and password after installing suggested plugins
+![image](https://github.com/user-attachments/assets/51068db5-ae9e-49f4-ad88-dd2d7c74c26a)
+
 click on save and finish
 
 ![Screenshot from 2025-06-20 17-44-39](https://github.com/user-attachments/assets/a3323b09-3f39-4324-be80-cf469dc5ba17)
@@ -121,13 +127,16 @@ click on save and finish
 
 ![Screenshot from 2025-06-20 17-44-48](https://github.com/user-attachments/assets/08c49901-2ac0-4bf0-b5a5-8e0f8b1faa83)
 
-## welcome to the dashboard 
+## welcome to the jenkins dashboard 
 
 ![Screenshot from 2025-06-20 17-45-24](https://github.com/user-attachments/assets/4e568762-4413-49b5-8855-9c5ea34222b6)
 
  Now u can do your work in jenkins like create a job, creating nodes and building jobs .
 
  ![Screenshot from 2025-06-20 18-44-47](https://github.com/user-attachments/assets/2218d92b-ef30-4ac9-96b3-117a2759c119)
+
+ ### Need to create API Key for establishing connection between localhost(machine) to the jenkins server.
+![image](https://github.com/user-attachments/assets/3fcfeac0-e198-4c0b-bde3-4a59ccc7ff88)
 
 
  Now you pass the values like API_KEY,USER,Local_Host etc.. in the Environmental variables in the monitor pythonScript.
